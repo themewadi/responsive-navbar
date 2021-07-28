@@ -1,0 +1,217 @@
+/* 
+Header CSS
+*/
+
+.header {
+  background: var(--light-color);
+
+  .navigation-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    @media #{$md, $xs} {
+      padding: 16px 0;
+    }
+  }
+
+  .logo {
+    max-width: 160px;
+    margin-right: 16px;
+
+    a {
+      display: block;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .mobile-menu-btn {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    @include transform(translateY(-50%));
+    display: none;
+
+    @media #{$md, $xs} {
+      display: block;
+    }
+
+    span.line {
+      width: 32px;
+      height: 2px;
+      background: var(--heading-color);
+      display: block;
+      margin: 6px auto;
+      @include transition(0.3s);
+      position: relative;
+    }
+
+    &.active {
+      .line-2 {
+        display: none;
+      }
+      .line-1 {
+        @include transform(rotate(44deg));
+      }
+      .line-3 {
+        @include transform(rotate(-45deg));
+        top: -8px;
+      }
+    }
+  }
+
+  .header-menu {
+    display: flex;
+    align-items: center;
+
+    .navigation {
+      @include transition(0.3s);
+
+      &__list {
+        display: flex;
+        align-items: center;
+      }
+
+      &__item {
+        position: relative;
+        padding: 16px 0;
+
+        @media #{$md, $xs} {
+          padding: 4px 12px;
+        }
+
+        .submenu {
+          @media #{$md, $xs} {
+            max-height: 0px;
+            opacity: 0;
+            margin-left: 12px;
+
+            &.show {
+              max-height: max-content;
+              height: auto;
+              opacity: 1;
+            }
+          }
+
+          @media #{$lg, $laptop, $desktop} {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            left: auto;
+            width: 248px;
+            background: var(--white);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition(0.3s);
+            padding: 16px;
+          }
+
+          &__item {
+            margin-bottom: 4px;
+
+            &:last-child {
+              margin-bottom: 0px;
+            }
+
+            &:hover {
+              .submenu__link {
+                color: var(--white);
+                background: var(--primary);
+              }
+            }
+          }
+          &__link {
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            padding: 8px 12px;
+            color: var(--body-color);
+            border-radius: 4px;
+          }
+        }
+
+        &.active {
+          & > .navigation__link {
+            color: var(--white);
+            background: var(--primary);
+          }
+        }
+
+        &:hover {
+          & > .navigation__link {
+            color: var(--white);
+            background: var(--primary);
+          }
+          & > .submenu {
+            @media #{$lg, $laptop, $desktop} {
+              opacity: 1;
+              visibility: visible;
+              top: 100%;
+            }
+          }
+        }
+      }
+
+      &__link {
+        font-weight: 500;
+        color: var(--body-color);
+        padding: 8px 32px;
+        display: inline-block;
+        border-radius: 4px;
+
+        @media #{$md, $xs} {
+          padding: 8px 16px;
+        }
+
+        i {
+          font-size: 14px;
+          font-weight: 700;
+          padding-left: 8px;
+        }
+      }
+
+      @media #{$md, $xs} {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        right: 0;
+        top: 120%;
+
+        &.show {
+          opacity: 1;
+          visibility: visible;
+          top: 100%;
+        }
+
+        &__list {
+          display: block;
+          width: 248px;
+          border-radius: 8px;
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          padding: 12px 0;
+        }
+
+        &__link {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+
+    .header-btn {
+      .main-btn {
+        border: none;
+      }
+    }
+  }
+}
